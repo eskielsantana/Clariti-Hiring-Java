@@ -1,3 +1,5 @@
+import domain.FeeService;
+
 import static config.util.CurrencyUtil.CurrencyFormatter;
 
 public class Main {

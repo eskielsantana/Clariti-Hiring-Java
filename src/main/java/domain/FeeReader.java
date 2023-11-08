@@ -1,4 +1,4 @@
-package domain.fee;
+package domain;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package domain.fee;
+package domain;
 
 public class Fee {
     private final String id;

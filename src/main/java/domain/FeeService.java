@@ -1,6 +1,5 @@
-import domain.fee.Fee;
-import domain.fee.FeeNode;
-import domain.fee.FeeReader;
+package domain;
+
 import infrastructure.FeeRepository;
 
 import java.util.ArrayList;

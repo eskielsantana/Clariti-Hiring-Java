@@ -1,7 +1,7 @@
 package infrastructure;
 
-import domain.fee.Fee;
-import domain.fee.FeeReader;
+import domain.Fee;
+import domain.FeeReader;
 import infrastructure.reader.Reader;
 import infrastructure.reader.UseOpenCsv;
 
