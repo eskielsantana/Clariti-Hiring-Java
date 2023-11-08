@@ -30,7 +30,7 @@ public class FeeService {
     }
 
     public double getTotalFeesByLayer(String... layers) {
-        FeeNode node = FindLayerNode(root, layers);
+        FeeNode node = findLayerNode(root, layers);
 
         return (node != null) ? node.feeTotal : 0;
     }
@@ -38,7 +38,7 @@ public class FeeService {
     public List<Fee> searchFeesByLayer(String... layers) {
         List<Fee> feeList = new ArrayList<>();
 
-        FeeNode current = FindLayerNode(root, layers);
+        FeeNode current = findLayerNode(root, layers);
 
         if (current == null) {
             return feeList;
@@ -64,7 +64,7 @@ public class FeeService {
         node.children.values().forEach(child -> printTree(child, indent + "  "));
     }
 
-    private FeeNode FindLayerNode(FeeNode node, String... layers) {
+    private FeeNode findLayerNode(FeeNode node, String... layers) {
         for (String layer : layers) {
             node = node.children.get(layer);
 
