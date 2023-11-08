@@ -20,16 +20,16 @@ public class FeeRepository implements FeeReader {
         return reader.readFile(FILE_NAME).stream().map(this::deserialize).toList();
     }
 
-    private Fee deserialize(String[] record) {
-        return new Fee(record[0],                                   // ID
-                       record[1],                                   // Name
-                       record[2],                                   // Description
-                       record[3],                                   // Department
-                       record[4],                                   // Category
-                       record[5],                                   // SubCategory
-                       record[6],                                   // Type
-                       Integer.parseInt(record[7]),                 // Quantity
-                       Double.parseDouble(record[8])                // Unit Price
+    private Fee deserialize(String[] data) {
+        return new Fee(data[0],                                   // ID
+                       data[1],                                   // Name
+                       data[2],                                   // Description
+                       data[3],                                   // Department
+                       data[4],                                   // Category
+                       data[5],                                   // SubCategory
+                       data[6],                                   // Type
+                       Integer.parseInt(data[7]),                 // Quantity
+                       Double.parseDouble(data[8])                // Unit Price
         );
     }
 }
