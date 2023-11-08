@@ -5,7 +5,7 @@ import infrastructure.FeeRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-import static config.util.CurrencyUtil.CurrencyFormatter;
+import static config.util.CurrencyUtil.currencyFormat;
 
 public class FeeService {
     private final FeeNode root;
@@ -60,7 +60,7 @@ public class FeeService {
     }
 
     private void printTree(FeeNode node, String indent) {
-        System.out.println(indent + node.name + ": " + CurrencyFormatter(node.feeTotal));
+        System.out.println(indent + node.name + ": " + currencyFormat(node.feeTotal));
         node.children.values().forEach(child -> printTree(child, indent + "  "));
     }
 
