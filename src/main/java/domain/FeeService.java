@@ -32,7 +32,7 @@ public class FeeService {
     public double getTotalFeesByLayer(String... layers) {
         FeeNode node = findLayerNode(root, layers);
 
-        return (node != null) ? node.feeTotal : 0;
+        return (node != null) ? node.getTotal() : 0;
     }
 
     public List<Fee> searchFeesByLayer(String... layers) {
@@ -50,23 +50,23 @@ public class FeeService {
     }
 
     private void collectFees(FeeNode node, List<Fee> feeList) {
-        if (node.children.isEmpty() && node.feeList != null) {
-            feeList.addAll(node.feeList);
+        if (node.hasNoChild() && node.hasFees()) {
+            feeList.addAll(node.getFeeList());
         }
 
-        for (FeeNode child : node.children.values()) {
+        for (FeeNode child : node.getChildrenValues()) {
             collectFees(child, feeList);
         }
     }
 
     private void printTree(FeeNode node, String indent) {
-        System.out.println(indent + node.name + ": " + currencyFormat(node.feeTotal));
-        node.children.values().forEach(child -> printTree(child, indent + "  "));
+        System.out.println(indent + node.getName() + ": " + currencyFormat(node.getTotal()));
+        node.getChildrenValues().forEach(child -> printTree(child, indent + "  "));
     }
 
     private FeeNode findLayerNode(FeeNode node, String... layers) {
         for (String layer : layers) {
-            node = node.children.get(layer);
+            node = node.getChildren().get(layer);
 
             if (node == null) {
                 return null;
@@ -76,18 +76,18 @@ public class FeeService {
     }
 
     private void insertNode(FeeNode root, Fee fee) {
-        FeeNode departmentNode = root.children.computeIfAbsent(fee.getDepartment(), FeeNode::new);
-        FeeNode categoryNode = departmentNode.children.computeIfAbsent(fee.getCategory(), FeeNode::new);
-        FeeNode subCategoryNode = categoryNode.children.computeIfAbsent(fee.getSubCategory(), FeeNode::new);
-        FeeNode typeNode = subCategoryNode.children.computeIfAbsent(fee.getType(), FeeNode::new);
+        FeeNode departmentNode = root.getChildren().computeIfAbsent(fee.getDepartment(), FeeNode::new);
+        FeeNode categoryNode = departmentNode.getChildren().computeIfAbsent(fee.getCategory(), FeeNode::new);
+        FeeNode subCategoryNode = categoryNode.getChildren().computeIfAbsent(fee.getSubCategory(), FeeNode::new);
+        FeeNode typeNode = subCategoryNode.getChildren().computeIfAbsent(fee.getType(), FeeNode::new);
 
         double feeTotal = fee.calculateFee();
 
-        root.feeTotal += feeTotal;
-        departmentNode.feeTotal += feeTotal;
-        categoryNode.feeTotal += feeTotal;
-        subCategoryNode.feeTotal += feeTotal;
-        typeNode.feeTotal += feeTotal;
+        root.addTotal(feeTotal);
+        departmentNode.addTotal(feeTotal);
+        categoryNode.addTotal(feeTotal);
+        subCategoryNode.addTotal(feeTotal);
+        typeNode.addTotal(feeTotal);
         typeNode.addFee(fee);
     }
 }
