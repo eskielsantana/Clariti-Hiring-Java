@@ -17,7 +17,7 @@ public class FeeService {
         root = new FeeNode("Total");
     }
 
-    public void AssembleTree() {
+    public void assembleTree() {
         List<Fee> feeList = repository.fetchFeeList();
 
         for (Fee fee : feeList) {

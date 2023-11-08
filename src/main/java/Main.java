@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         FeeService manager = new FeeService();
 
-        manager.AssembleTree();
+        manager.assembleTree();
 
         manager.printTree();
 
