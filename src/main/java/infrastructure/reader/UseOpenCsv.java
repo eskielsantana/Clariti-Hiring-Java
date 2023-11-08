@@ -27,7 +27,7 @@ public class UseOpenCsv implements Reader {
         URL fileUrl = UseOpenCsv.class.getClassLoader().getResource(file);
 
         if (fileUrl == null) {
-            LOGGER.severe(String.format(FILE_NOT_FOUND_MESSAGE, file));
+            LOGGER.severe(() -> String.format(FILE_NOT_FOUND_MESSAGE, file));
             return records;
         }
 
@@ -38,7 +38,7 @@ public class UseOpenCsv implements Reader {
                     .withCSVParser(PARSER)
                     .build();
         } catch (FileNotFoundException e) {
-            LOGGER.severe(String.format(FILE_NOT_FOUND_MESSAGE, file));
+            LOGGER.severe(() -> String.format(FILE_NOT_FOUND_MESSAGE, file));
             return records;
         }
 
@@ -49,10 +49,9 @@ public class UseOpenCsv implements Reader {
                     break;
                 }
             } catch (CsvValidationException | IOException e) {
-                LOGGER.severe(String.format(FILE_INVALID_MESSAGE, file));
+                LOGGER.severe(() -> String.format(FILE_INVALID_MESSAGE, file));
                 return new ArrayList<>();
             }
-
             records.add(nextLine);
         }
 
