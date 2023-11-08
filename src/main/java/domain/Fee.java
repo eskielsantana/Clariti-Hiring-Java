@@ -61,7 +61,7 @@ public class Fee {
 
     @Override
     public String toString() {
-        return String.format("%s: %s - %s | %d * %b", id, name, description, quantity, price);
+        return String.format("%s: %s - %s | %d * %.2f", id, name, description, quantity, price);
     }
 
     private double subCharge() {
