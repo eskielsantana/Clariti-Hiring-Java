@@ -6,7 +6,6 @@ import infrastructure.reader.Reader;
 import infrastructure.reader.UseOpenCsv;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FeeRepository implements FeeReader {
     private static final String FILE_NAME = "raw_fees.csv";
@@ -18,7 +17,7 @@ public class FeeRepository implements FeeReader {
 
     @Override
     public List<Fee> fetchFeeList() {
-        return reader.readFile(FILE_NAME).stream().map(this::deserialize).collect(Collectors.toList());
+        return reader.readFile(FILE_NAME).stream().map(this::deserialize).toList();
     }
 
     private Fee deserialize(String[] record) {
