@@ -12,8 +12,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class UseOpenCsv implements Reader {
+    private static final Logger LOGGER = Logger.getLogger(UseOpenCsv.class.getName());
     private static final String FILE_NOT_FOUND_MESSAGE = "File %s not found, result will be empty.";
     private static final String FILE_INVALID_MESSAGE = "File %s is invalid or corrupted, result will be emtpy.";
     private static final CSVParser PARSER = new CSVParserBuilder().withSeparator(',').build();
@@ -25,7 +27,7 @@ public class UseOpenCsv implements Reader {
         URL fileUrl = UseOpenCsv.class.getClassLoader().getResource(file);
 
         if (fileUrl == null) {
-            System.err.printf((FILE_NOT_FOUND_MESSAGE) + "%n", file);
+            LOGGER.severe(String.format(FILE_NOT_FOUND_MESSAGE, file));
             return records;
         }
 
@@ -36,7 +38,7 @@ public class UseOpenCsv implements Reader {
                     .withCSVParser(PARSER)
                     .build();
         } catch (FileNotFoundException e) {
-            System.err.printf((FILE_NOT_FOUND_MESSAGE) + "%n", file);
+            LOGGER.severe(String.format(FILE_NOT_FOUND_MESSAGE, file));
             return records;
         }
 
@@ -47,7 +49,7 @@ public class UseOpenCsv implements Reader {
                     break;
                 }
             } catch (CsvValidationException | IOException e) {
-                System.err.printf((FILE_INVALID_MESSAGE) + "%n", file);
+                LOGGER.severe(String.format(FILE_INVALID_MESSAGE, file));
                 return new ArrayList<>();
             }
 
