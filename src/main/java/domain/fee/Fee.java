@@ -3,7 +3,7 @@ package domain.fee;
 import static config.util.CurrencyUtil.currencyFormat;
 import static config.util.CurrencyUtil.percentage;
 
-public class Fee implements Comparable<Fee> {
+public class Fee {
     private final String id;
     private final String name;
     private final String description;
@@ -66,11 +66,6 @@ public class Fee implements Comparable<Fee> {
     public String toString() {
         return String.format(" - %s | %-45s | %s/un | %2d Units | %s Charge | %s Total |",
                              id, name, currencyFormat(price), quantity, percentage(subCharge()) ,currencyFormat(subChargedPrice));
-    }
-
-    @Override
-    public int compareTo(Fee o) {
-        return Double.compare(this.subChargedPrice, o.subChargedPrice);
     }
 
     private double subCharge() {
