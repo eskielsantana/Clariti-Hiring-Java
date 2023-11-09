@@ -10,4 +10,9 @@ public class CurrencyUtil {
     public static String currencyFormat(double amount) {
         return CANADIAN.format(amount);
     }
+
+    public static String percentage(double number) {
+        int percentage = (int) Math.round((number - 1) * 100);
+        return (percentage > 0 ? "+" : "") + percentage + "%";
+    }
 }

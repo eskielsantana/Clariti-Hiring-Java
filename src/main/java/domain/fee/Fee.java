@@ -1,6 +1,9 @@
-package domain;
+package domain.fee;
 
-public class Fee {
+import static config.util.CurrencyUtil.currencyFormat;
+import static config.util.CurrencyUtil.percentage;
+
+public class Fee implements Comparable<Fee> {
     private final String id;
     private final String name;
     private final String description;
@@ -10,6 +13,7 @@ public class Fee {
     private final String type;
     private final int quantity;
     private final double price;
+    private final double subChargedPrice;
 
     public Fee(String id,
                String name,
@@ -29,6 +33,7 @@ public class Fee {
         this.type = type;
         this.quantity = quantity;
         this.price = price;
+        this.subChargedPrice = calculateSubcharge();
     }
 
     public String getId() {
@@ -55,13 +60,17 @@ public class Fee {
         return type;
     }
 
-    public double calculateFee() {
-        return price * quantity * subCharge();
-    }
+    public double getSubChargedPrice() { return subChargedPrice; }
 
     @Override
     public String toString() {
-        return String.format("%s: %s - %s | %d * %.2f", id, name, description, quantity, price);
+        return String.format(" - %s | %-45s | %s/un | %2d Units | %s Charge | %s Total |",
+                             id, name, currencyFormat(price), quantity, percentage(subCharge()) ,currencyFormat(subChargedPrice));
+    }
+
+    @Override
+    public int compareTo(Fee o) {
+        return Double.compare(this.subChargedPrice, o.subChargedPrice);
     }
 
     private double subCharge() {
@@ -73,5 +82,9 @@ public class Fee {
             case "Support" -> 0.95;
             default -> 1;
         };
+    }
+
+    private double calculateSubcharge() {
+        return price * quantity * subCharge();
     }
 }

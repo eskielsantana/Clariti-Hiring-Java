@@ -1,10 +1,12 @@
-package domain;
+package domain.fee;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static config.util.CurrencyUtil.currencyFormat;
 
 public class FeeNode {
     private final String name;
@@ -41,12 +43,25 @@ public class FeeNode {
     }
 
     public boolean hasNoChild() {
-        return !children.isEmpty();
+        return children.isEmpty();
     }
     public Map<String, FeeNode> getChildren() {
         return children;
     }
     public Collection<FeeNode> getChildrenValues() {
         return children.values();
+    }
+
+    public int count() {
+        int count = 1;
+        for (FeeNode child : children.values()) {
+            count += child.count();
+        }
+        return count;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(" - %-15s | %s Total |", name, currencyFormat(feeTotal));
     }
 }
