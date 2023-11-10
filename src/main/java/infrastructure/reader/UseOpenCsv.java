@@ -5,6 +5,7 @@ import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
+import org.apache.log4j.Logger;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,10 +13,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class UseOpenCsv implements Reader {
-    private static final Logger LOGGER = Logger.getLogger(UseOpenCsv.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(UseOpenCsv.class);
     private static final String FILE_NOT_FOUND_MESSAGE = "File %s not found, result will be empty.";
     private static final String FILE_INVALID_MESSAGE = "File %s is invalid or corrupted, result will be emtpy.";
     private static final CSVParser PARSER = new CSVParserBuilder().withSeparator(',').build();
@@ -27,7 +27,7 @@ public class UseOpenCsv implements Reader {
         URL fileUrl = UseOpenCsv.class.getClassLoader().getResource(file);
 
         if (fileUrl == null) {
-            LOGGER.severe(() -> String.format(FILE_NOT_FOUND_MESSAGE, file));
+            LOGGER.warn(String.format(FILE_NOT_FOUND_MESSAGE, file));
             return records;
         }
 
@@ -38,7 +38,7 @@ public class UseOpenCsv implements Reader {
                     .withCSVParser(PARSER)
                     .build();
         } catch (FileNotFoundException e) {
-            LOGGER.severe(() -> String.format(FILE_NOT_FOUND_MESSAGE, file));
+            LOGGER.warn(String.format(FILE_NOT_FOUND_MESSAGE, file));
             return records;
         }
 
@@ -49,7 +49,7 @@ public class UseOpenCsv implements Reader {
                     break;
                 }
             } catch (CsvValidationException | IOException e) {
-                LOGGER.severe(() -> String.format(FILE_INVALID_MESSAGE, file));
+                LOGGER.error(String.format(FILE_INVALID_MESSAGE, file));
                 return new ArrayList<>();
             }
             records.add(nextLine);

@@ -78,6 +78,6 @@ public class FeeNode {
 
     @Override
     public String toString() {
-        return String.format(" - %-15s | %s Total |", name, currencyFormat(feeTotal));
+        return String.format("| %-15s | %s Total |", name, currencyFormat(feeTotal));
     }
 }
