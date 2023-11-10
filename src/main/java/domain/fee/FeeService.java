@@ -35,23 +35,13 @@ public class FeeService {
     }
 
     public List<Fee> getFeesByLayer(int limit, boolean isReversed, String... layers) {
-        List<Fee> feeList = new ArrayList<>();
         Optional<FeeNode> node = findLayerNode(root, layers);
 
-        collectFees(node.orElse(root), feeList);
+        List<Fee> feeList = node.orElse(root).getFeeList();
 
         sortFeeList(feeList, isReversed);
 
         return feeList.stream().limit(limit).toList();
-    }
-
-    private void collectFees(FeeNode node, List<Fee> feeList) {
-        if (node.hasNoChild() && node.hasFees()) {
-            feeList.addAll(node.getFeeList());
-        }
-        for (FeeNode child : node.getChildrenValues()) {
-            collectFees(child, feeList);
-        }
     }
 
     private Optional<FeeNode> findLayerNode(FeeNode node, String... layers) {

@@ -11,7 +11,7 @@ import static domain.helper.CurrencyHelper.currencyFormat;
 public class FeeNode {
     private final String name;
     private double feeTotal;
-    private List<Fee> feeList;
+    private final List<Fee> feeList = new ArrayList<>();
     private final Map<String, FeeNode> children = new HashMap<>();
 
     public FeeNode(String name) {
@@ -19,9 +19,7 @@ public class FeeNode {
     }
 
     public void addFee(Fee fee) {
-        if (feeList == null) {
-            feeList = new ArrayList<>();
-        }
+        feeTotal += fee.getSubChargedPrice();
         feeList.add(fee);
     }
 
@@ -31,33 +29,22 @@ public class FeeNode {
         FeeNode subCategoryNode = categoryNode.getChildren().computeIfAbsent(fee.getSubCategory(), FeeNode::new);
         FeeNode typeNode = subCategoryNode.getChildren().computeIfAbsent(fee.getType(), FeeNode::new);
 
-        addTotal(fee.getSubChargedPrice());
-        departmentNode.addTotal(fee.getSubChargedPrice());
-        categoryNode.addTotal(fee.getSubChargedPrice());
-        subCategoryNode.addTotal(fee.getSubChargedPrice());
-        typeNode.addTotal(fee.getSubChargedPrice());
-
+        addFee(fee);
+        departmentNode.addFee(fee);
+        categoryNode.addFee(fee);
+        subCategoryNode.addFee(fee);
         typeNode.addFee(fee);
     }
 
-    public boolean hasFees() {
-        return feeList != null;
-    }
     public List<Fee> getFeeList() {
         return feeList;
     }
-
     public String getName() {
         return name;
-    }
-
-    public void addTotal(double total) {
-        feeTotal += total;
     }
     public double getTotal() {
         return feeTotal;
     }
-
     public boolean hasNoChild() {
         return children.isEmpty();
     }

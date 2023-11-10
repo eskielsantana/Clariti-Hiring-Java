@@ -236,7 +236,7 @@ public class FeeServiceTest {
         List<Fee> expected = Arrays.asList(
                 new Fee("Fee1", "Fee1", "", "Test Department", "First Cat", "Cat1", "TypeA", 1, 15.00),
                 new Fee("Fee2", "Fee2", "", "Test Department", "First Cat", "Cat3", "TypeA", 1, 25.00),
-                new Fee("Fee3", "Fee3", "", "Test Department", "First Cat", "Cat3", "TypeC", 1, 35.00),
+                new Fee("Fee3", "Fee3", "", "Test Department", "First Cat", "Cat3", "TypeC", 1, 34.00),
                 new Fee("Fee6", "Fee6", "", "Test Department", "First Cat", "Cat2", "TypeB", 1, 35.00)
         );
         List<Fee> extra = Arrays.asList(
