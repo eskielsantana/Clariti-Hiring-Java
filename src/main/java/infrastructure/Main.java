@@ -10,16 +10,14 @@ public class Main {
     private static final Logger LOGGER = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
-
-        FeeService service = new FeeService();
+        FeeService service = FeeService.getInstance();
 
         double totalFee1 = service.getNodeTotalFees("Development", "Quality Assurance", "Cat1");
-
         LOGGER.info("What are the total Cat1 fees within the Quality Assurance Category of the Development department?");
         LOGGER.info("Result: " + currencyFormat(totalFee1));
         LOGGER.info("");
-        double totalFee2 = service.getNodeTotalFees("Operations", "Human Resources");
 
+        double totalFee2 = service.getNodeTotalFees("Operations", "Human Resources");
         LOGGER.info("What are the total fees for the Human Resources category of the Operations department?");
         LOGGER.info("Result: " + currencyFormat(totalFee2));
         LOGGER.info("");

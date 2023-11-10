@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class FeeService {
+    private static FeeService instance;
     private FeeNode root;
     private final FeeReader readerRepository;
 
@@ -80,7 +81,17 @@ public class FeeService {
         }
     }
 
-    // Variables exposed for tests
+    public static void setInstance(FeeService instance) {
+        FeeService.instance = instance;
+    }
+
+    public static FeeService getInstance() {
+        if (instance == null) {
+            instance = new FeeService();
+        }
+        return instance;
+    }
+
     public FeeNode getRootNodeForTesting() {
         return root;
     }
