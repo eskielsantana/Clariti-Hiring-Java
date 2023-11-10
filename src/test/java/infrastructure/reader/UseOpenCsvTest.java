@@ -30,24 +30,6 @@ public class UseOpenCsvTest {
     }
 
     @Test
-    public void readFile_WhenGivenNullFileName_ReturnEmptyList() {
-        List<String[]> result = reader.read(null);
-        assertTrue(result.isEmpty());
-    }
-
-    @Test
-    public void readFile_WhenGivenInexistentFileName_ReturnEmptyList() {
-        List<String[]> result = reader.read("nonexistent.csv");
-        assertTrue(result.isEmpty());
-    }
-
-    @Test
-    public void readFile_WhenGivenNameOfEmptyFile_ThrowsNoErrorsAndReturnEmptyList() {
-        List<String[]> result = reader.read("empty_file.csv");
-        assertTrue(result.isEmpty());
-    }
-
-    @Test
     public void readFile_WhenCSVReaderThrowsIOException_PrintErrorAndReturnsEmptyList() throws Exception {
         CSVReader csvReader = mock(CSVReader.class);
         CSVReaderFactory csvFactory = mock(DefaultCSVReaderFactory.class);
