@@ -11,10 +11,10 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class UseOpenCsvParameterizedTest {
+public class CSVFileReaderParameterizedTest {
     private final String fileName;
 
-    public UseOpenCsvParameterizedTest(String fileName) {
+    public CSVFileReaderParameterizedTest(String fileName) {
         this.fileName = fileName;
     }
 
@@ -29,7 +29,7 @@ public class UseOpenCsvParameterizedTest {
 
     @Test
     public void readFile_WhenGivenFileName_ReturnEmptyList() {
-        UseOpenCsv reader = new UseOpenCsv();
+        CSVFileReader reader = new CSVFileReader();
 
         List<String[]> result = reader.read(fileName);
         assertTrue(result.isEmpty());

@@ -11,23 +11,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UseOpenCsv implements FileReader {
-    private static final Logger LOGGER = Logger.getLogger(UseOpenCsv.class);
+public class CSVFileReader {
+    private static final Logger LOGGER = Logger.getLogger(CSVFileReader.class);
     private static final String FILE_NAME_IS_NULL_MESSAGE = "Method readFile received a null fileName. Result will be empty.";
     private static final String FILE_NOT_FOUND_MESSAGE = "File (%s) not found. Result will be empty.";
     private static final String FILE_READING_ERROR_MESSAGE = "Error reading file (%s). Result will be emtpy.";
 
     private final CSVReaderFactory csvReaderFactory;
 
-    public UseOpenCsv() {
+    public CSVFileReader() {
         csvReaderFactory = new DefaultCSVReaderFactory();
     }
-
-    public UseOpenCsv(CSVReaderFactory csvReaderFactory) {
+    public CSVFileReader(CSVReaderFactory csvReaderFactory) {
         this.csvReaderFactory = csvReaderFactory;
     }
 
-    @Override
     public List<String[]> read(String fileName) {
         List<String[]> records = new ArrayList<>();
 

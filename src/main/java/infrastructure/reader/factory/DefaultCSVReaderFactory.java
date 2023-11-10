@@ -4,10 +4,9 @@ import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-import infrastructure.reader.UseOpenCsv;
+import infrastructure.reader.CSVFileReader;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.net.URL;
 
 public class DefaultCSVReaderFactory implements CSVReaderFactory {
@@ -15,12 +14,12 @@ public class DefaultCSVReaderFactory implements CSVReaderFactory {
 
     @Override
     public CSVReader createCSVReader(String file) throws FileNotFoundException {
-        URL fileUrl = UseOpenCsv.class.getClassLoader().getResource(file);
+        URL fileUrl = CSVFileReader.class.getClassLoader().getResource(file);
         if (fileUrl == null) {
             throw new FileNotFoundException(String.format("File not found: %s", file));
         }
 
-        return new CSVReaderBuilder(new FileReader(fileUrl.getFile()))
+        return new CSVReaderBuilder(new java.io.FileReader(fileUrl.getFile()))
                 .withSkipLines(1)
                 .withCSVParser(PARSER)
                 .build();

@@ -15,12 +15,12 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class UseOpenCsvTest {
-    private UseOpenCsv reader;
+public class CSVFileReaderTest {
+    private CSVFileReader reader;
 
     @Before
     public void setUp() {
-        reader = new UseOpenCsv();
+        reader = new CSVFileReader();
     }
 
     @Test
@@ -33,7 +33,7 @@ public class UseOpenCsvTest {
     public void readFile_WhenCSVReaderThrowsIOException_PrintErrorAndReturnsEmptyList() throws Exception {
         CSVReader csvReader = mock(CSVReader.class);
         CSVReaderFactory csvFactory = mock(DefaultCSVReaderFactory.class);
-        reader = new UseOpenCsv(csvFactory);
+        reader = new CSVFileReader(csvFactory);
 
         when(csvFactory.createCSVReader(anyString())).thenReturn(csvReader);
         when(csvReader.readNext()).thenThrow(new IOException("IOException Test"));
@@ -46,7 +46,7 @@ public class UseOpenCsvTest {
     public void readFile_WhenCSVReaderThrowsCsvValidationException_PrintErrorAndReturnsEmptyList() throws Exception {
         CSVReader csvReader = mock(CSVReader.class);
         CSVReaderFactory csvFactory = mock(DefaultCSVReaderFactory.class);
-        reader = new UseOpenCsv(csvFactory);
+        reader = new CSVFileReader(csvFactory);
 
         when(csvFactory.createCSVReader(anyString())).thenReturn(csvReader);
         when(csvReader.readNext()).thenThrow(new CsvValidationException("CsvValidationException Test"));
