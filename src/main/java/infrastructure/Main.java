@@ -3,7 +3,6 @@ package infrastructure;
 import domain.fee.FeeService;
 import org.apache.log4j.Logger;
 
-
 import static domain.helper.CurrencyHelper.currencyFormat;
 
 public class Main {
@@ -33,6 +32,4 @@ public class Main {
         LOGGER.info("What are the smaller 3 fees for the Sales Engineering category of the Sales department?");
         service.getFeesByLayer(3, false, "Sales", "Sales Engineering").forEach(node -> LOGGER.info(node.toString()));
     }
-
-
 }
