@@ -307,19 +307,4 @@ public class FeeServiceTest {
         List<Fee> resultList = feeService.getFeesByLayer(3, false);
         assertEquals(resultList, expected);
     }
-
-    @Test
-    public void feeNode_hasFees_WhenCalled_ProperlyReturnsIfNodeHasFeesAssigned() {
-        List<Fee> mockFees = new ArrayList<>(Arrays.asList(
-                new Fee("Fee1", "Fee4", "", "Test Sales", "Sales Engineering", "Cat1", "TypeC", 1, 15.00),
-                new Fee("Fee2", "Fee5", "", "Test Support", "Tier 1", "Cat2", "TypeB", 1, 30.00),
-                new Fee("Fee6", "Fee6", "", "Test Support", "Tier 2", "Cat3", "TypeA", 1, 28.00),
-                new Fee("Fee7", "Fee7", "", "Test Sales", "Sales Engineering", "Cat1", "TypeC", 1, 13.00),
-                new Fee("Fee8", "Fee8", "", "Test Development", "Quality Assurance", "Cat2", "TypeB", 1, 22.00),
-                new Fee("Fee9", "Fee9", "", "Test Support", "Tier 3", "Cat3", "TypeA", 1, 17.00)
-        ));
-
-
-
-    }
 }
