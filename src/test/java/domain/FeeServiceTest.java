@@ -116,7 +116,7 @@ public class FeeServiceTest {
 
         List<FeeNode> nodes = feeService.getNodeList("Test Development");
 
-        assertEquals(nodes.size(), 2);
+        assertEquals(2, nodes.size());
     }
 
     @Test
@@ -135,7 +135,7 @@ public class FeeServiceTest {
 
         List<FeeNode> nodes = feeService.getNodeList();
 
-        assertEquals(nodes.size(), 4);
+        assertEquals(4, nodes.size());
     }
 
     @Test
@@ -153,7 +153,7 @@ public class FeeServiceTest {
 
         List<FeeNode> nodes = feeService.getNodeList("Inexistent", "Layers");
 
-        assertEquals(nodes.size(), 4);
+        assertEquals(4, nodes.size());
     }
 
     @Test
