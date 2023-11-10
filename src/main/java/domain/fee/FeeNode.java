@@ -24,6 +24,22 @@ public class FeeNode {
         }
         feeList.add(fee);
     }
+
+    public void addNodeFee(Fee fee) {
+        FeeNode departmentNode = children.computeIfAbsent(fee.getDepartment(), FeeNode::new);
+        FeeNode categoryNode = departmentNode.getChildren().computeIfAbsent(fee.getCategory(), FeeNode::new);
+        FeeNode subCategoryNode = categoryNode.getChildren().computeIfAbsent(fee.getSubCategory(), FeeNode::new);
+        FeeNode typeNode = subCategoryNode.getChildren().computeIfAbsent(fee.getType(), FeeNode::new);
+
+        addTotal(fee.getSubChargedPrice());
+        departmentNode.addTotal(fee.getSubChargedPrice());
+        categoryNode.addTotal(fee.getSubChargedPrice());
+        subCategoryNode.addTotal(fee.getSubChargedPrice());
+        typeNode.addTotal(fee.getSubChargedPrice());
+
+        typeNode.addFee(fee);
+    }
+
     public boolean hasFees() {
         return feeList != null;
     }

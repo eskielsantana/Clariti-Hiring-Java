@@ -8,22 +8,17 @@ import java.util.List;
 import java.util.Optional;
 
 public class FeeService {
-    private final FeeNode root;
-    private final FeeReader repository;
+    private FeeNode root;
+    private final FeeReader readerRepository;
 
     public FeeService() {
-        repository = new FeeRepository();
-        root = new FeeNode("Total");
-
+        readerRepository = new FeeRepository();
         loadFees();
     }
 
-    public void assembleTree() {
-        List<Fee> feeList = repository.fetchFeeList();
-
-        for (Fee fee : feeList) {
-            insertNode(root, fee);
-        }
+    public FeeService(FeeReader readerRepository) {
+        this.readerRepository = readerRepository;
+        loadFees();
     }
 
     public double getNodeTotalFees(String... layers) {
@@ -67,20 +62,6 @@ public class FeeService {
         return Optional.of(node);
     }
 
-    private void insertNode(FeeNode root, Fee fee) {
-        FeeNode departmentNode = root.getChildren().computeIfAbsent(fee.getDepartment(), FeeNode::new);
-        FeeNode categoryNode = departmentNode.getChildren().computeIfAbsent(fee.getCategory(), FeeNode::new);
-        FeeNode subCategoryNode = categoryNode.getChildren().computeIfAbsent(fee.getSubCategory(), FeeNode::new);
-        FeeNode typeNode = subCategoryNode.getChildren().computeIfAbsent(fee.getType(), FeeNode::new);
-
-        root.addTotal(fee.getSubChargedPrice());
-        departmentNode.addTotal(fee.getSubChargedPrice());
-        categoryNode.addTotal(fee.getSubChargedPrice());
-        subCategoryNode.addTotal(fee.getSubChargedPrice());
-        typeNode.addTotal(fee.getSubChargedPrice());
-        typeNode.addFee(fee);
-    }
-
     private void sortFeeList(List<Fee> feeList, boolean isReversed) {
         Comparator<Fee> comparator = Comparator.comparingDouble(Fee::getSubChargedPrice);
 
@@ -90,18 +71,20 @@ public class FeeService {
     }
 
     private void loadFees() {
-        List<Fee> feeList = repository.fetchFeeList();
+        root = new FeeNode("Total");
+
+        List<Fee> feeList = readerRepository.fetchFeeList();
 
         for (Fee fee : feeList) {
-            insertNode(root, fee);
+            root.addNodeFee(fee);
         }
     }
 
     // Variables exposed for tests
-    public FeeNode getRootForTesting() {
+    public FeeNode getRootNodeForTesting() {
         return root;
     }
     public FeeReader getFeeReaderForTesting() {
-        return repository;
+        return readerRepository;
     }
 }
