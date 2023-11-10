@@ -15,7 +15,7 @@ public class UseOpenCsv implements FileReader {
     private static final Logger LOGGER = Logger.getLogger(UseOpenCsv.class);
     private static final String FILE_NAME_IS_NULL_MESSAGE = "Method readFile received a null fileName. Result will be empty.";
     private static final String FILE_NOT_FOUND_MESSAGE = "File (%s) not found. Result will be empty.";
-    private static final String FILE_INVALID_MESSAGE = "File (%s) is invalid or corrupted. Result will be emtpy.";
+    private static final String FILE_READING_ERROR_MESSAGE = "Error reading file (%s). Result will be emtpy.";
 
     private final CSVReaderFactory csvReaderFactory;
 
@@ -36,23 +36,15 @@ public class UseOpenCsv implements FileReader {
             return records;
         }
 
-        CSVReader csvReader;
-        try {
-            csvReader = csvReaderFactory.createCSVReader(fileName);
+        try (CSVReader csvReader = csvReaderFactory.createCSVReader(fileName)) {
+            String[] nextLine;
+            while ((nextLine = csvReader.readNext()) != null) { records.add(nextLine); }
         } catch (FileNotFoundException e) {
             LOGGER.warn(String.format(FILE_NOT_FOUND_MESSAGE, fileName));
-            return records;
-        }
-
-        String[] nextLine;
-        while (true) {
-            try {
-                if ((nextLine = csvReader.readNext()) == null) { break; }
-            } catch (CsvValidationException | IOException e) {
-                LOGGER.error(String.format(FILE_INVALID_MESSAGE, fileName));
-                return records;
-            }
-            records.add(nextLine);
+            return new ArrayList<>();
+        } catch (IOException | CsvValidationException e) {
+            LOGGER.warn(String.format(FILE_READING_ERROR_MESSAGE, fileName), e);
+            return new ArrayList<>();
         }
 
         return records;

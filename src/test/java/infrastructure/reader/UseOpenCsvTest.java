@@ -48,7 +48,7 @@ public class UseOpenCsvTest {
     }
 
     @Test
-    public void readFile_WhenCSVReaderThrowsIOException_MethodHandlesErrorAndReturnsEmptyList() throws IOException, CsvValidationException {
+    public void readFile_WhenCSVReaderThrowsIOException_PrintErrorAndReturnsEmptyList() throws Exception {
         CSVReader csvReader = mock(CSVReader.class);
         CSVReaderFactory csvFactory = mock(DefaultCSVReaderFactory.class);
         reader = new UseOpenCsv(csvFactory);
@@ -56,12 +56,12 @@ public class UseOpenCsvTest {
         when(csvFactory.createCSVReader(anyString())).thenReturn(csvReader);
         when(csvReader.readNext()).thenThrow(new IOException("IOException Test"));
 
-        List<String[]> result = reader.read("anyfile.csv");
+        List<String[]> result = reader.read("raw_fees.csv");
         assertTrue(result.isEmpty());
     }
 
     @Test
-    public void readFile_WhenCSVReaderThrowsCsvValidationException_MethodHandlesErrorAndReturnsEmptyList() throws IOException, CsvValidationException {
+    public void readFile_WhenCSVReaderThrowsCsvValidationException_PrintErrorAndReturnsEmptyList() throws Exception {
         CSVReader csvReader = mock(CSVReader.class);
         CSVReaderFactory csvFactory = mock(DefaultCSVReaderFactory.class);
         reader = new UseOpenCsv(csvFactory);
@@ -69,7 +69,7 @@ public class UseOpenCsvTest {
         when(csvFactory.createCSVReader(anyString())).thenReturn(csvReader);
         when(csvReader.readNext()).thenThrow(new CsvValidationException("CsvValidationException Test"));
 
-        List<String[]> result = reader.read("anyfile.csv");
+        List<String[]> result = reader.read("raw_fees.csv");
         assertTrue(result.isEmpty());
     }
 }
