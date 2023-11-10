@@ -24,5 +24,6 @@ public class FeeNodeTest {
         assertNotNull(formatted);
         assertTrue(formatted.contains(nodeName));
         assertTrue(formatted.contains(currencyFormat(value)));
+        assertTrue(formatted.contains(String.format("%d Fees", root.getFeeList().size())));
     }
 }
