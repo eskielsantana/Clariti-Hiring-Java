@@ -154,7 +154,7 @@ public class FeeServiceTest {
     }
 
     @Test
-    public void getFeesByLayer_WhenRequestedThe3BiggestFeesForExistentLayer_ListOnlyRequestedLayersFees() {
+    public void getFeesByLayer_WhenRequestedThe3MostExpensiveTotalFeesForExistentLayer_ListOnlyRequestedLayersFees() {
         List<Fee> expected = Arrays.asList(
                 new Fee("Fee1", "Fee1", "", "Test Department", "First Cat", "Cat1", "TypeA", 1, 55.00),
                 new Fee("Fee2", "Fee2", "", "Test Department", "First Cat", "Cat3", "TypeA", 1, 35.00),
@@ -179,7 +179,7 @@ public class FeeServiceTest {
     }
 
     @Test
-    public void getFeesByLayer_WhenRequestedThe3BiggestFeesForInexistentLayer_ListFeesFromAllLayers() {
+    public void getFeesByLayer_WhenRequestedThe3MostExpensiveTotalFeesForInexistentLayer_ListFeesFromAllLayers() {
         List<Fee> expected = Arrays.asList(
                 new Fee("Fee1", "Fee1", "", "Test Development", "Coding", "Cat1", "TypeA", 1, 55.00),
                 new Fee("Fee2", "Fee2", "", "Test Marketing", "ABM", "Cat3", "TypeA", 1, 35.00),
@@ -206,7 +206,7 @@ public class FeeServiceTest {
     }
 
     @Test
-    public void getFeesByLayer_WhenRequestedThe3BiggestFeesWithNoLayerDefined_ListFeesFromAllLayers() {
+    public void getFeesByLayer_WhenRequestedThe3MostExpensiveTotalFeesWithNoLayerDefined_ListFeesFromAllLayers() {
         List<Fee> expected = Arrays.asList(
                 new Fee("Fee1", "Fee1", "", "Test Development", "Coding", "Cat1", "TypeA", 1, 55.00),
                 new Fee("Fee2", "Fee2", "", "Test Marketing", "ABM", "Cat3", "TypeA", 1, 35.00),
@@ -232,7 +232,7 @@ public class FeeServiceTest {
     }
 
     @Test
-    public void getFeesByLayer_WhenRequestedThe4SmallerFeesForExistentLayer_ListOnlyRequestedLayersFees() {
+    public void getFeesByLayer_WhenRequestedThe4CheapestTotalFeesForExistentLayer_ListOnlyRequestedLayersFees() {
         List<Fee> expected = Arrays.asList(
                 new Fee("Fee1", "Fee1", "", "Test Department", "First Cat", "Cat1", "TypeA", 1, 15.00),
                 new Fee("Fee2", "Fee2", "", "Test Department", "First Cat", "Cat3", "TypeA", 1, 25.00),
@@ -258,7 +258,7 @@ public class FeeServiceTest {
     }
 
     @Test
-    public void getFeesByLayer_WhenRequestedThe4SmallerFeesForInexistentLayer_ListFeesFromAllLayers() {
+    public void getFeesByLayer_WhenRequestedThe4CheapestTotalFeesForInexistentLayer_ListFeesFromAllLayers() {
         List<Fee> expected = Arrays.asList(
                 new Fee("Fee1", "Fee1", "", "Test Development", "Coding", "Cat1", "TypeA", 1, 4.50),
                 new Fee("Fee2", "Fee2", "", "Test Marketing", "ABM", "Cat3", "TypeA", 1, 7.75),
@@ -284,7 +284,7 @@ public class FeeServiceTest {
     }
 
     @Test
-    public void getFeesByLayer_WhenRequestedThe4SmallerFeesWithNoLayerDefined_ListFeesFromAllLayers() {
+    public void getFeesByLayer_WhenRequestedThe4CheapestTotalFeesWithNoLayerDefined_ListFeesFromAllLayers() {
         List<Fee> expected = Arrays.asList(
                 new Fee("Fee1", "Fee1", "", "Test Development", "Coding", "Cat1", "TypeA", 1, 4.50),
                 new Fee("Fee2", "Fee2", "", "Test Marketing", "ABM", "Cat3", "TypeA", 1, 7.75),
@@ -310,7 +310,7 @@ public class FeeServiceTest {
     }
 
     @Test
-    public void getFeesByLayer_WhenRequestedThe4SmallerFeesWithNoLayerDefined_LaistFeesFromAllLayers() {
+    public void getFeesByLayer_WhenRequestedThe4CheapestTotalFeesWithNoLayerDefined_LaistFeesFromAllLayers() {
         List<Fee> expected = Arrays.asList(
                 new Fee("Fee1", "Fee1", "", "Test Development", "Coding", "Cat1", "TypeA", 1, 4.50),
                 new Fee("Fee2", "Fee2", "", "Test Marketing", "ABM", "Cat3", "TypeA", 1, 7.75),

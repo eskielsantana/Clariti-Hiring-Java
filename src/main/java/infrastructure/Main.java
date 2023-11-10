@@ -25,11 +25,11 @@ public class Main {
         service.getNodeList().forEach(node -> LOGGER.info(node.toString()));
         LOGGER.info("");
 
-        LOGGER.info("What are the biggest 5 fees for the Development department?");
+        LOGGER.info("What are the 5 most expensive total fees for the Development department?");
         service.getFeesByLayer(5, true,"Development").forEach(node -> LOGGER.info(node.toString()));
         LOGGER.info("");
 
-        LOGGER.info("What are the smaller 3 fees for the Sales Engineering category of the Sales department?");
+        LOGGER.info("What are the cheapest 3 total fees for the Sales Engineering category of the Sales department?");
         service.getFeesByLayer(3, false, "Sales", "Sales Engineering").forEach(node -> LOGGER.info(node.toString()));
     }
 }
