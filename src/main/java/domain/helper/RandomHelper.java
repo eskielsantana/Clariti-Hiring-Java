@@ -1,4 +1,4 @@
-package domain;
+package domain.helper;
 
 import java.util.Collection;
 import java.util.Objects;

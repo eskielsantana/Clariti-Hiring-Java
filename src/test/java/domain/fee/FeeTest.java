@@ -4,8 +4,8 @@ import domain.enumerators.Category;
 import domain.enumerators.Department;
 import org.junit.Test;
 
-import static domain.RandomHelper.randomDouble;
-import static domain.RandomHelper.randomNumber;
+import static domain.helper.RandomHelper.randomDouble;
+import static domain.helper.RandomHelper.randomNumber;
 import static domain.helper.CurrencyHelper.currencyFormat;
 import static domain.fee.FeeFactory.getRandomFeeId;
 import static domain.fee.FeeFactory.getRandomFeeSubCategory;

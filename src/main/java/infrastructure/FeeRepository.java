@@ -2,22 +2,22 @@ package infrastructure;
 
 import domain.fee.Fee;
 import domain.fee.FeeReader;
-import infrastructure.reader.Reader;
+import infrastructure.reader.FileReader;
 import infrastructure.reader.UseOpenCsv;
 
 import java.util.List;
 
 public class FeeRepository implements FeeReader {
     private static final String FILE_NAME = "raw_fees.csv";
-    private final Reader reader;
+    private final FileReader fileReader;
 
     public FeeRepository() {
-        reader = new UseOpenCsv();
+        fileReader = new UseOpenCsv();
     }
 
     @Override
     public List<Fee> fetchFeeList() {
-        return reader.readFile(FILE_NAME).stream().map(this::deserialize).toList();
+        return fileReader.read(FILE_NAME).stream().map(this::deserialize).toList();
     }
 
     private Fee deserialize(String[] data) {

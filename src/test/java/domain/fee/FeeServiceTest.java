@@ -1,9 +1,5 @@
 package domain.fee;
 
-import domain.fee.Fee;
-import domain.fee.FeeNode;
-import domain.fee.FeeReader;
-import domain.fee.FeeService;
 import org.junit.Before;
 import org.junit.Test;
 
