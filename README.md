@@ -23,6 +23,14 @@ into a **Tree structure** in which each level of nodes represents a hierarchy on
 
 ## Project Structure
 
+The project follows a clean architecture guideline. There are two main abstractions.
+
+Domain is the place to keep only business rules. The other places can import classes from the domain, but the domain should be isolated from framework classes and annotations that can create a strong coupling between the business rules and the app structure. This approach makes the process of segregating the business from one specific domain to another. Another advantage of this approach is that it lets us better manage our test strategy. The test domain package executes mainly unit tests to check business rules. We use mocks to simulate the interface's implementation and inputs to do this. Otherwise, the test infrastructure package is responsible for keeping the integration tests.
+
+The Infrastructure package will keep the necessary implementations to integrate the app with external services (repositories, queues, etc.), implement contracts defined at the domain level (abstract classes and interfaces) and set up the app, loading data from environment variables or external services (AWS app config). As this package contains mainly classes from frameworks, the test for this package is focused on integrations
+
+The app was created respecting the SOLID principles, using interfaces to define implementation contracts, keeping single responsibility, implementing dependency inversion (infrastructure depends on the domain), etc. This app uses GitHub actions to atomate app build and uses Sonarcloud to check the quality of code and the test coverage.
+
 ```
 ├── .gitignore
 ├── pom.xml
@@ -48,8 +56,7 @@ into a **Tree structure** in which each level of nodes represents a hierarchy on
     │   │       │   Main.java
     │   │       │
     │   │       └─── reader
-    │   │           │   FileReader.java
-    │   │           │   UseOpenCsv.java
+    │   │           │   CSVFileReader.java
     │   │           │
     │   │           └─── factory
     │   │                   CSVReaderFactory.java
