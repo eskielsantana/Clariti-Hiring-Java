@@ -8,15 +8,18 @@ import java.util.List;
 
 public class FeeRepository implements FeeReader {
     private static final String FILE_NAME = "raw_fees.csv";
-    private final CSVFileReader CSVFileReader;
+    private final CSVFileReader reader;
 
     public FeeRepository() {
-        CSVFileReader = new CSVFileReader();
+        reader = new CSVFileReader();
+    }
+    public FeeRepository(CSVFileReader reader) {
+        this.reader = reader;
     }
 
     @Override
     public List<Fee> fetchFeeList() {
-        return CSVFileReader.read(FILE_NAME).stream().map(this::deserialize).toList();
+        return reader.read(FILE_NAME).stream().map(this::deserialize).toList();
     }
 
     private Fee deserialize(String[] data) {
