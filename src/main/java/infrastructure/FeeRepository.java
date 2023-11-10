@@ -20,15 +20,19 @@ public class FeeRepository implements FeeReader {
     }
 
     private Fee deserialize(String[] data) {
-        return new Fee(data[0],                                   // ID
-                       data[1],                                   // Name
-                       data[2],                                   // Description
-                       data[3],                                   // Department
-                       data[4],                                   // Category
-                       data[5],                                   // SubCategory
-                       data[6],                                   // Type
-                       Integer.parseInt(data[7]),                 // Quantity
-                       Double.parseDouble(data[8])                // Unit Price
+        return new Fee(escape(data[0]),                                   // ID
+                       escape(data[1]),                                   // Name
+                       escape(data[2]),                                   // Description
+                       escape(data[3]),                                   // Department
+                       escape(data[4]),                                   // Category
+                       escape(data[5]),                                   // SubCategory
+                       escape(data[6]),                                   // Type
+                       Integer.parseInt(escape(data[7])),                 // Quantity
+                       Double.parseDouble(escape(data[8]))                // Unit Price
         );
+    }
+
+    private String escape(String value) {
+        return value.trim();
     }
 }
