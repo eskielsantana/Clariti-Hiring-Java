@@ -94,6 +94,19 @@ The app was created respecting the SOLID principles, using interfaces to define 
                         UseOpenCsvTest.java
 ```
 
+## Performance
+I tested the performance on 2 different files, the given .csv and a heavier one I generated using the same columns and similar data to the given file.
+The results are displayed below:
+
+| Method                    | 1.74mb file    | 1.4gb file   |
+|---------------------------| -------------- | ------------ |
+| **loadFees**              | 127814 micro   | 32.110 milli |
+| **getNodeTotalFees (1º)** | 998 micro      | 1000 micro   |
+| **getNodeTotalFees (2º)** | 0 micro        | 0 micro      |
+| **getNodeList()**         | 0 micro        | 0 micro      |
+| **getFeesByLayer (1º)**   | 5999 micro     | 1031 milli   |
+| **getFeesByLayer (2º)**   | 999 micro      | 535 milli    |
+
 ## Install
 #### Download the repository
 ```sh
