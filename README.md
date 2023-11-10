@@ -1,6 +1,6 @@
 # Clariti-Hiring-Java
 
-[![Build Status](https://github.com/eskielsantana/Clariti-Hiring-Java/actions/workflows/build.yml/badge.svg)](https://github.com/seu-usuario/seu-repositorio/actions)
+[![Build Status](https://github.com/eskielsantana/Clariti-Hiring-Java/actions/workflows/build.yml/badge.svg)](https://github.com/eskielsantana/Clariti-Hiring-Java/actions)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=eskielsantana_Clariti-Hiring-Java&metric=alert_status)](https://sonarcloud.io/dashboard?id=eskielsantana_Clariti-Hiring-Java)
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
 
