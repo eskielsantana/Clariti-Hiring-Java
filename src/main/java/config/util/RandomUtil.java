@@ -6,6 +6,7 @@ import java.util.Random;
 public class RandomUtil {
     public static final Random RANDOM = new Random();
 
+    private RandomUtil() { }
     public static <E> E randomElement(Collection<? extends E> collection) {
         if(collection.isEmpty()) return null;
         return collection.stream().toList().get(RANDOM.nextInt(collection.size()));
