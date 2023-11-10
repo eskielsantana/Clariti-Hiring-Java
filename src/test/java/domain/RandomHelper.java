@@ -1,19 +1,26 @@
-package config.util;
+package domain;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Random;
 
-public class RandomUtil {
+public class RandomHelper {
     public static final Random RANDOM = new Random();
 
-    private RandomUtil() { }
+    private RandomHelper() { }
     public static <E> E randomElement(Collection<? extends E> collection) {
-        if(collection.isEmpty()) return null;
+        Objects.requireNonNull(collection, "Collection must not be null");
+        if (collection.isEmpty()) {
+            throw new IllegalArgumentException("Collection must not be empty");
+        }
         return collection.stream().toList().get(RANDOM.nextInt(collection.size()));
     }
 
     public static <E> E randomElement(E[] collection) {
-        if(collection.length == 0) return null;
+        Objects.requireNonNull(collection, "Collection must not be null");
+        if (collection.length == 0) {
+            throw new IllegalArgumentException("Collection must not be empty");
+        }
         return collection[RANDOM.nextInt(collection.length)];
     }
 
