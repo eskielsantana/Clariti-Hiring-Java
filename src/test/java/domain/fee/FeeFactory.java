@@ -26,15 +26,27 @@ public class FeeFactory {
 
     public static Fee mockFee(int i, Department department) {
         return new Fee(
-                String.format("RND%06d", RANDOM.nextInt(1000000)),
+                getRandomFeeId(),
                 String.format("Random Fee %d", i),
                 "This is a randomly generated fee. Isn't it useful?",
                 department.name,
                 department.getRandomCategory().name,
-                randomElement(SUB_CATEGORIES),
-                randomElement(TYPES),
+                getRandomFeeSubCategory(),
+                getRandomFeeType(),
                 randomNumber(1, 10),
                 randomDouble(1, 100)
         );
+    }
+
+    public static String getRandomFeeId() {
+        return String.format("RND%06d", RANDOM.nextInt(1000000));
+    }
+
+    public static String getRandomFeeSubCategory() {
+        return randomElement(SUB_CATEGORIES);
+    }
+
+    public static String getRandomFeeType() {
+        return randomElement(TYPES);
     }
 }

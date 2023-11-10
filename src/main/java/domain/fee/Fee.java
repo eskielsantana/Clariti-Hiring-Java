@@ -44,6 +44,10 @@ public class Fee {
         return name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public String getDepartment() {
         return department;
     }
