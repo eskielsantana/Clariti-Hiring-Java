@@ -3,7 +3,7 @@ package domain.enumerators;
 import java.util.Arrays;
 import java.util.List;
 
-import static config.util.RandomUtil.randomElement;
+import static domain.RandomHelper.randomElement;
 
 public enum Department {
     MARKETING("Marketing", Category.ABM),

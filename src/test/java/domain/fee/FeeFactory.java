@@ -6,10 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static config.util.RandomUtil.RANDOM;
-import static config.util.RandomUtil.randomDouble;
-import static config.util.RandomUtil.randomElement;
-import static config.util.RandomUtil.randomNumber;
+import static domain.RandomHelper.RANDOM;
+import static domain.RandomHelper.randomDouble;
+import static domain.RandomHelper.randomElement;
+import static domain.RandomHelper.randomNumber;
 
 public class FeeFactory {
     private final static List<String> SUB_CATEGORIES = Arrays.asList("Cat1", "Cat2", "Cat3");

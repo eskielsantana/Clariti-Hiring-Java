@@ -1,7 +1,7 @@
 package domain.fee;
 
-import static config.util.CurrencyUtil.currencyFormat;
-import static config.util.CurrencyUtil.percentage;
+import static domain.currency.Currency.currencyFormat;
+import static domain.currency.Currency.percentDifference;
 
 public class Fee {
     private final String id;
@@ -64,8 +64,8 @@ public class Fee {
 
     @Override
     public String toString() {
-        return String.format(" - %s | %-45s | %s/un | %2d Units | %s Charge | %s Total |",
-                             id, name, currencyFormat(price), quantity, percentage(subCharge()) ,currencyFormat(subChargedPrice));
+        return String.format("| %s | %-45s | %s/un | %2d Units | %s Charge | %s Total |",
+                             id, name, currencyFormat(price), quantity, percentDifference(subCharge()) , currencyFormat(subChargedPrice));
     }
 
     private double subCharge() {

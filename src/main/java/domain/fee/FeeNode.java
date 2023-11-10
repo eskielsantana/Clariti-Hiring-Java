@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static config.util.CurrencyUtil.currencyFormat;
+import static domain.currency.Currency.currencyFormat;
 
 public class FeeNode {
     private final String name;

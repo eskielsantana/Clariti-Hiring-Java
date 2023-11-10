@@ -1,4 +1,4 @@
-package domain;
+package domain.fee;
 
 import domain.fee.Fee;
 import domain.fee.FeeNode;
