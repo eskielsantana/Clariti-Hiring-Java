@@ -29,6 +29,6 @@ public class RandomHelper {
     }
 
     public static double randomDouble(double min, double max) {
-        return RANDOM.nextDouble() * (max - min + 1) + min;
+        return RANDOM.nextDouble() * (max - min) + min;
     }
 }
