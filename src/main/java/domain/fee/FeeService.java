@@ -84,7 +84,6 @@ public class FeeService {
     public static void setInstance(FeeService instance) {
         FeeService.instance = instance;
     }
-
     public static FeeService getInstance() {
         if (instance == null) {
             instance = new FeeService();
