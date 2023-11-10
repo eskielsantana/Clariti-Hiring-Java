@@ -68,14 +68,6 @@ public class FeeNode {
         return children.values();
     }
 
-    public int count() {
-        int count = 1;
-        for (FeeNode child : children.values()) {
-            count += child.count();
-        }
-        return count;
-    }
-
     @Override
     public String toString() {
         return String.format("| %-15s | %s Total |", name, currencyFormat(feeTotal));
