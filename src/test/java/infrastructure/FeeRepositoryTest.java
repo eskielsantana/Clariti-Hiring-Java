@@ -28,7 +28,7 @@ public class FeeRepositoryTest {
     @Test
     public void fetchFeeList_WhenFileReadHasProperData_ReturnsExpectedListOfFees() {
         List<String[]> expected = Arrays.asList(
-                new String[]{"Fee Id1", "First Fee", "This is a raw fee.", "Test Development", "Coding", "Cat2", "TypeC", "3", "97.03"},
+                new String[]{"Fee Id1", "First Fee" , "This is a raw fee.", "Test Development", "Coding"           , "Cat2", "TypeC", "3", "97.03"},
                 new String[]{"Fee Id2", "Second Fee", "This is a raw fee.", "Test Development", "Quality Assurance", "Cat3", "TypeA", "5", "99.94"}
         );
 
@@ -79,10 +79,7 @@ public class FeeRepositoryTest {
     @Test(expected = NumberFormatException.class)
     public void fetchFeeList_WhenFileReadHasLineWithStringOnQuantityColumn_ThrowsNumberFormatExceptionError() {
         List<String[]> expected = Collections.singletonList(
-                new String[]{
-                        "Fee Id1", "First Fee", "This is a raw fee.", "Development",
-                        "Coding", "Cat2", "TypeC", "Quantity", "97.03"
-                }
+                new String[]{"Fee Id1", "First Fee", "This is a raw fee.", "Development", "Coding", "Cat2", "TypeC", "Quantity", "97.03"}
         );
 
         when(reader.read(anyString())).thenReturn(expected);
@@ -93,10 +90,7 @@ public class FeeRepositoryTest {
     @Test(expected = NumberFormatException.class)
     public void fetchFeeList_WhenFileReadHasLineWithStringOnPriceColumn_ThrowsNumberFormatExceptionError() {
         List<String[]> expected = Collections.singletonList(
-                new String[]{
-                        "Fee Id1", "First Fee", "This is a raw fee.", "Development",
-                        "Coding", "Cat2", "TypeC", "4", "Price"
-                }
+                new String[]{"Fee Id1", "First Fee", "This is a raw fee.", "Development", "Coding", "Cat2", "TypeC", "4", "Price"}
         );
 
         when(reader.read(anyString())).thenReturn(expected);
