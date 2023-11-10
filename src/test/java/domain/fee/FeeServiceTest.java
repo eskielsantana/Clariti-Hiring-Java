@@ -12,6 +12,7 @@ import static domain.fee.FeeFactory.mockFeeList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -306,5 +307,47 @@ public class FeeServiceTest {
 
         List<Fee> resultList = feeService.getFeesByLayer(3, false);
         assertEquals(resultList, expected);
+    }
+
+    @Test
+    public void getFeesByLayer_WhenRequestedThe4SmallerFeesWithNoLayerDefined_LaistFeesFromAllLayers() {
+        List<Fee> expected = Arrays.asList(
+                new Fee("Fee1", "Fee1", "", "Test Development", "Coding", "Cat1", "TypeA", 1, 4.50),
+                new Fee("Fee2", "Fee2", "", "Test Marketing", "ABM", "Cat3", "TypeA", 1, 7.75),
+                new Fee("Fee3", "Fee3", "", "Test Operations", "Human Resources", "Cat3", "TypeC", 1, 10.25)
+        );
+        List<Fee> mockFees = new ArrayList<>(Arrays.asList(
+                new Fee("Fee4", "Fee4", "", "Test Sales", "Sales Engineering", "Cat1", "TypeC", 1, 15.00),
+                new Fee("Fee5", "Fee5", "", "Test Support", "Tier 1", "Cat2", "TypeB", 1, 30.00),
+                new Fee("Fee6", "Fee6", "", "Test Support", "Tier 2", "Cat3", "TypeA", 1, 28.00),
+                new Fee("Fee7", "Fee7", "", "Test Sales", "Sales Engineering", "Cat1", "TypeC", 1, 13.00),
+                new Fee("Fee8", "Fee8", "", "Test Development", "Quality Assurance", "Cat2", "TypeB", 1, 22.00),
+                new Fee("Fee9", "Fee9", "", "Test Support", "Tier 3", "Cat3", "TypeA", 1, 17.00)
+        ));
+        mockFees.addAll(expected);
+        Collections.shuffle(mockFees);
+
+        when(mockRepository.fetchFeeList()).thenReturn(mockFees);
+
+        feeService = new FeeService(mockRepository);
+
+        List<Fee> resultList = feeService.getFeesByLayer(3, false);
+        assertEquals(resultList, expected);
+    }
+
+    @Test
+    public void getInstance_WhenInstanceIsNull_CreatesSingletonInstance() {
+        FeeService.cleanInstance();
+        feeService = new FeeService();
+
+        boolean isInstanceNull = FeeService.isInstanceNull();
+
+        assertTrue(isInstanceNull);
+
+        FeeService singletonInstance = FeeService.getInstance();
+        isInstanceNull = FeeService.isInstanceNull();
+
+        assertNotNull(singletonInstance);
+        assertFalse(isInstanceNull);
     }
 }

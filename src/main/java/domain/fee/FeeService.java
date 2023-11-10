@@ -98,4 +98,8 @@ public class FeeService {
     public FeeReader getFeeReaderForTesting() {
         return readerRepository;
     }
+    public static void cleanInstance() { instance = null; }
+    public static boolean isInstanceNull() {
+        return instance == null;
+    }
 }
