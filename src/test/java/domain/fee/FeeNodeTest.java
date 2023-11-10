@@ -2,7 +2,7 @@ package domain.fee;
 
 import org.junit.Test;
 
-import static domain.currency.Currency.currencyFormat;
+import static domain.helper.CurrencyHelper.currencyFormat;
 import static domain.fee.FeeFactory.mockFee;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

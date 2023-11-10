@@ -1,7 +1,7 @@
 package domain.fee;
 
-import static domain.currency.Currency.currencyFormat;
-import static domain.currency.Currency.percentDifference;
+import static domain.helper.CurrencyHelper.currencyFormat;
+import static domain.helper.MathHelper.percentDifference;
 
 public class Fee {
     private final String id;

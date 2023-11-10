@@ -1,22 +1,11 @@
-package domain.currency;
+package domain.helper;
 
 import org.junit.Test;
 
-import static domain.currency.Currency.currencyFormat;
-import static domain.currency.Currency.percentDifference;
+import static domain.helper.MathHelper.percentDifference;
 import static org.junit.Assert.assertEquals;
 
-public class CurrencyTest {
-
-    @Test
-    public void currencyFormat_WhenGivenDoubleValue_ReturnStringFormattedCurrency() {
-        double given = 1665.2333333;
-        String expected = "$1,665.23";
-
-        String formatted = currencyFormat(given);
-
-        assertEquals(expected, formatted);
-    }
+public class MathHelperTest {
 
     @Test
     public void percentage_WhenGivenDoubleValueBiggerThanOne_ReturnStringFormattedPercentage() {

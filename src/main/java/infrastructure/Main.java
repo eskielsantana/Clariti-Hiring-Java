@@ -4,7 +4,7 @@ import domain.fee.FeeService;
 import org.apache.log4j.Logger;
 
 
-import static domain.currency.Currency.currencyFormat;
+import static domain.helper.CurrencyHelper.currencyFormat;
 
 public class Main {
     private static final Logger LOGGER = Logger.getLogger(Main.class);

@@ -6,11 +6,11 @@ import org.junit.Test;
 
 import static domain.RandomHelper.randomDouble;
 import static domain.RandomHelper.randomNumber;
-import static domain.currency.Currency.currencyFormat;
-import static domain.currency.Currency.percentDifference;
+import static domain.helper.CurrencyHelper.currencyFormat;
 import static domain.fee.FeeFactory.getRandomFeeId;
 import static domain.fee.FeeFactory.getRandomFeeSubCategory;
 import static domain.fee.FeeFactory.getRandomFeeType;
+import static domain.helper.MathHelper.percentDifference;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
