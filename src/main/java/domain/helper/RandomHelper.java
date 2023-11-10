@@ -7,7 +7,8 @@ import java.util.Random;
 public class RandomHelper {
     public static final Random RANDOM = new Random();
 
-    private RandomHelper() { }
+    private RandomHelper() {}
+
     public static <E> E randomElement(Collection<? extends E> collection) {
         Objects.requireNonNull(collection, "Collection must not be null");
         if (collection.isEmpty()) {

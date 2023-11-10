@@ -1,8 +1,6 @@
 package infrastructure;
 
 import domain.fee.Fee;
-import domain.fee.FeeReader;
-import domain.fee.FeeService;
 import infrastructure.reader.CSVFileReader;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +39,7 @@ public class FeeRepositoryTest {
         assertNotNull(result);
         assertEquals(expected.size(), result.size());
         double feeSubCharge;
-        for(int i = 0; i < expected.size(); i++) {
+        for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i)[0], result.get(i).getId());
             assertEquals(expected.get(i)[1], result.get(i).getName());
             assertEquals(expected.get(i)[2], result.get(i).getDescription());
@@ -81,7 +79,7 @@ public class FeeRepositoryTest {
     @Test(expected = NumberFormatException.class)
     public void fetchFeeList_WhenFileReadHasLineWithStringOnQuantityColumn_ThrowsNumberFormatExceptionError() {
         List<String[]> expected = Collections.singletonList(
-                new String[] {
+                new String[]{
                         "Fee Id1", "First Fee", "This is a raw fee.", "Development",
                         "Coding", "Cat2", "TypeC", "Quantity", "97.03"
                 }
@@ -95,7 +93,7 @@ public class FeeRepositoryTest {
     @Test(expected = NumberFormatException.class)
     public void fetchFeeList_WhenFileReadHasLineWithStringOnPriceColumn_ThrowsNumberFormatExceptionError() {
         List<String[]> expected = Collections.singletonList(
-                new String[] {
+                new String[]{
                         "Fee Id1", "First Fee", "This is a raw fee.", "Development",
                         "Coding", "Cat2", "TypeC", "4", "Price"
                 }

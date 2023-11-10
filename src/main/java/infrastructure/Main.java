@@ -26,7 +26,7 @@ public class Main {
         LOGGER.info("");
 
         LOGGER.info("What are the 5 most expensive total fees for the Development department?");
-        service.getFeesByLayer(5, true,"Development").forEach(node -> LOGGER.info(node.toString()));
+        service.getFeesByLayer(5, true, "Development").forEach(node -> LOGGER.info(node.toString()));
         LOGGER.info("");
 
         LOGGER.info("What are the cheapest 3 total fees for the Sales Engineering category of the Sales department?");

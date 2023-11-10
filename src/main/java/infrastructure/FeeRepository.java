@@ -13,6 +13,7 @@ public class FeeRepository implements FeeReader {
     public FeeRepository() {
         reader = new CSVFileReader();
     }
+
     public FeeRepository(CSVFileReader reader) {
         this.reader = reader;
     }

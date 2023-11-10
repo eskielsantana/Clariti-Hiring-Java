@@ -64,12 +64,12 @@ public class Fee {
         return type;
     }
 
-    public double getSubChargedPrice() { return subChargedPrice; }
+    public double getSubChargedPrice() {return subChargedPrice;}
 
     @Override
     public String toString() {
         return String.format("| %s | %-45s | %s/un | %2d Units | %s Charge | %s Total |",
-                             id, name, currencyFormat(price), quantity, percentDifference(subCharge()) , currencyFormat(subChargedPrice));
+                             id, name, currencyFormat(price), quantity, percentDifference(subCharge()), currencyFormat(subChargedPrice));
     }
 
     private double subCharge() {

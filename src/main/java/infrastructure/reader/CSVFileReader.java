@@ -22,6 +22,7 @@ public class CSVFileReader {
     public CSVFileReader() {
         csvReaderFactory = new DefaultCSVReaderFactory();
     }
+
     public CSVFileReader(CSVReaderFactory csvReaderFactory) {
         this.csvReaderFactory = csvReaderFactory;
     }
@@ -29,14 +30,16 @@ public class CSVFileReader {
     public List<String[]> read(String fileName) {
         List<String[]> records = new ArrayList<>();
 
-        if(fileName == null) {
+        if (fileName == null) {
             LOGGER.warn(FILE_NAME_IS_NULL_MESSAGE);
             return records;
         }
 
         try (CSVReader csvReader = csvReaderFactory.createCSVReader(fileName)) {
             String[] nextLine;
-            while ((nextLine = csvReader.readNext()) != null) { records.add(nextLine); }
+            while ((nextLine = csvReader.readNext()) != null) {
+                records.add(nextLine);
+            }
         } catch (FileNotFoundException e) {
             LOGGER.warn(String.format(FILE_NOT_FOUND_MESSAGE, fileName));
             return new ArrayList<>();

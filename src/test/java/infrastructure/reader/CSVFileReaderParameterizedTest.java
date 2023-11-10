@@ -20,10 +20,10 @@ public class CSVFileReaderParameterizedTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-                { null },
-                { "nonexistent.csv" },
-                { "empty_file.csv" }
+        return Arrays.asList(new Object[][]{
+                {null},
+                {"nonexistent.csv"},
+                {"empty_file.csv"}
         });
     }
 

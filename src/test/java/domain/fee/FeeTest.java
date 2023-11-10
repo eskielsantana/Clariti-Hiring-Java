@@ -4,13 +4,13 @@ import domain.enumerators.Category;
 import domain.enumerators.Department;
 import org.junit.Test;
 
-import static domain.helper.RandomHelper.randomDouble;
-import static domain.helper.RandomHelper.randomNumber;
-import static domain.helper.CurrencyHelper.currencyFormat;
 import static domain.fee.FeeFactory.getRandomFeeId;
 import static domain.fee.FeeFactory.getRandomFeeSubCategory;
 import static domain.fee.FeeFactory.getRandomFeeType;
+import static domain.helper.CurrencyHelper.currencyFormat;
 import static domain.helper.MathHelper.percentDifference;
+import static domain.helper.RandomHelper.randomDouble;
+import static domain.helper.RandomHelper.randomNumber;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

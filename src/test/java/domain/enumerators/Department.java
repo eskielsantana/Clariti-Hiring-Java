@@ -20,10 +20,11 @@ public enum Department {
         this.categories = Arrays.asList(categories);
     }
 
-    public Category getRandomCategory() {
-        return randomElement(categories);
-    }
     public static Department getRandomDepartment() {
         return randomElement(Department.values());
+    }
+
+    public Category getRandomCategory() {
+        return randomElement(categories);
     }
 }
